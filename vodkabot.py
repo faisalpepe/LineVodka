@@ -219,7 +219,7 @@ def SEND_MESSAGE(op):
                 if msg.text == "gift":
                     sendMessage(msg.to, text="gift sent", contentMetadata=None, contentType=9)
                 if msg.text == "P":
-                    sendMessage(msg.to, "ELt \n「tes」ER")
+                    sendMessage(msg.to, "ELER")
                     try:
                         del wait['readPoint'][msg.to]
                         del wait['readMember'][msg.to]
