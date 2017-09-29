@@ -247,12 +247,32 @@ def SEND_MESSAGE(op):
                     pass
         else:
             pass
-
-    except Exception as e:
-        print e
-        print ("\n\nSEND_MESSAGE\n\n")
-        return
-
+if msg.text == "B":
+                    print "ok"
+                    _name = msg.text.replace("B","")
+                    gs = client.getGroup(msg.to)
+                    sendMessage(msg.to,"b")
+                    targets = []
+                    for g in gs.members:
+                        if _name in g.displayName:
+                            targets.append(g.mid)
+                    if targets == []:
+                        sendMessage(msg.to,"error")
+                    else:
+                        for target in targets:
+                            try:
+                                klist=[client]
+                                kicker=random.choice(klist)
+                                kicker.kickoutFromGroup(msg.to,[target])
+                                print (msg.to,[g.mid])
+                            except:
+                                sendText(msg.to,"error")
+#-------------------------------------------------------------
+                if msg.text == "P":
+                    sendMessage(msg.to,"ELER")
+        else:
+            pass
+'
 tracer.addOpInterrupt(25,SEND_MESSAGE)
 
 while True:
