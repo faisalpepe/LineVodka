@@ -37,46 +37,16 @@ def sendMessage(to, text, contentMetadata={}, contentType=0):
     messageReq[to] += 1
     client._client.sendMessage(messageReq[to], mes)
 
-def NOTIFIED_ADD_CONTACT(op):
-    try:
-        sendMessage(op.param1, client.getContact(op.param1).displayName + "Thanks for add")
-    except Exception as e:
-        print e
-        print ("\n\nNOTIFIED_ADD_CONTACT\n\n")
-        return
-
-tracer.addOpInterrupt(5,NOTIFIED_ADD_CONTACT)
-
 def NOTIFIED_ACCEPT_GROUP_INVITATION(op):
     #print op
     try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + "WELCOME to " + group.name)
+        sendMessage(op.param1, client.getContact(op.param2).displayName + " KAM ")
     except Exception as e:
         print e
         print ("\n\nNOTIFIED_ACCEPT_GROUP_INVITATION\n\n")
         return
 
 tracer.addOpInterrupt(17,NOTIFIED_ACCEPT_GROUP_INVITATION)
-
-def NOTIFIED_KICKOUT_FROM_GROUP(op):
-    try:
-        sendMessage(op.param1, client.getContact(op.param3).displayName + " Good Bye\n(*´･ω･*)")
-    except Exception as e:
-        print e
-        print ("\n\nNOTIFIED_KICKOUT_FROM_GROUP\n\n")
-        return
-
-tracer.addOpInterrupt(19,NOTIFIED_KICKOUT_FROM_GROUP)
-
-def NOTIFIED_LEAVE_GROUP(op):
-    try:
-        sendMessage(op.param1, client.getContact(op.param2).displayName + " Good Bye\n(*´･ω･*)")
-    except Exception as e:
-        print e
-        print ("\n\nNOTIFIED_LEAVE_GROUP\n\n")
-        return
-
-tracer.addOpInterrupt(15,NOTIFIED_LEAVE_GROUP)
 
 def NOTIFIED_READ_MESSAGE(op):
     #print op
@@ -247,7 +217,7 @@ def SEND_MESSAGE(op):
                     pass
         else:
             pass
-if msg.text == "B":
+		if msg.text == "B":
                     print "ok"
                     _name = msg.text.replace("B","")
                     gs = client.getGroup(msg.to)
@@ -268,11 +238,7 @@ if msg.text == "B":
                             except:
                                 sendText(msg.to,"error")
 #-------------------------------------------------------------
-                if msg.text == "P":
-                    sendMessage(msg.to,"ELER")
-        else:
-            pass
-'
+              
 tracer.addOpInterrupt(25,SEND_MESSAGE)
 
 while True:
